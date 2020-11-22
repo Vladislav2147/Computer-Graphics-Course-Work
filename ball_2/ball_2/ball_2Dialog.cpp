@@ -6,9 +6,9 @@
 #include "ball_2Dialog.h"
 #include "afxdialogex.h"
 #include "MAINFRM.H"
+#include "windef.h"
 
 // диалоговое окно ball_2Dialog
-
 IMPLEMENT_DYNAMIC(ball_2Dialog, CDialogEx)
 
 ball_2Dialog::ball_2Dialog(CWnd* pParent /*=NULL*/)
@@ -60,6 +60,9 @@ void ball_2Dialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT8, mon_lig_R);
 	DDX_Control(pDX, IDC_EDIT9, mon_lig_fi);
 	DDX_Control(pDX, IDC_EDIT10, mon_lig_q);
+	DDX_Control(pDX, IDC_EDIT21, color_R);
+	DDX_Control(pDX, IDC_EDIT22, color_G);
+	DDX_Control(pDX, IDC_EDIT23, color_B);
 	DDX_Control(pDX, IDOK, btn_OK);
 }
 
@@ -73,6 +76,9 @@ BEGIN_MESSAGE_MAP(ball_2Dialog, CDialogEx)
 	ON_EN_CHANGE(IDC_EDIT2, &ball_2Dialog::OnEnChangeEdit2)
 	ON_EN_CHANGE(IDC_EDIT3, &ball_2Dialog::OnEnChangeEdit3)
 	ON_EN_CHANGE(IDC_EDIT4, &ball_2Dialog::OnEnChangeEdit4)
+	ON_EN_CHANGE(IDC_EDIT21, &ball_2Dialog::OnEnChangeEdit21)
+	ON_EN_CHANGE(IDC_EDIT22, &ball_2Dialog::OnEnChangeEdit22)
+	ON_EN_CHANGE(IDC_EDIT23, &ball_2Dialog::OnEnChangeEdit23)
 	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDER2, &ball_2Dialog::OnNMCustomdrawSlider2)
 	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDER3, &ball_2Dialog::OnNMCustomdrawSlider3)
 	ON_NOTIFY(NM_CUSTOMDRAW, IDC_SLIDER4, &ball_2Dialog::OnNMCustomdrawSlider4)
@@ -103,7 +109,7 @@ END_INTERFACE_MAP()
 void ball_2Dialog::OnBnClickedOk()
 {
 	// TODO: добавьте свой код обработчика уведомлений
-	
+	sp.color_b = RGB(colorR, colorG, colorB);
 	((CMainFrame*)GetParent())->sp = sp;
 	((CMainFrame*)GetParent())->sp.timer = true;
 	CDialogEx::OnOK();
@@ -147,6 +153,19 @@ void ball_2Dialog::OnBnClickedButton1()
 	con_F.SetWindowTextA(str);
 	itoa(main.main_R,str,10);
 	con_R.SetWindowTextA(str);
+
+	//цвета
+	colorR = GetRValue(main.color_b);
+	colorG = GetGValue(main.color_b);
+	colorB = GetBValue(main.color_b);
+	itoa(colorR, str, 10);
+	color_R.SetWindowTextA(str);
+	itoa(colorG, str, 10);
+	color_G.SetWindowTextA(str);
+	itoa(colorB, str, 10);
+	color_B.SetWindowTextA(str);
+
+
 	if (main.ball_light) con_light_mir.SetCheck(1);
 	else con_light_diff.SetCheck(1);
 	//положение наблюдателя
@@ -257,6 +276,63 @@ void ball_2Dialog::OnEnChangeEdit4()
 		con_R.SetWindowTextA("150");
 	}
 	else sp.main_R = buf;
+}
+
+void ball_2Dialog::OnEnChangeEdit21()
+{
+	int buf;
+	char* str = new char[5];
+	color_R.GetWindowTextA(str, 5);
+	buf = atoi(str);
+	if (buf < 0)
+	{
+		colorR = 0;
+		color_R.SetWindowTextA("0");
+	}
+	else if (buf > 255)
+	{
+		colorR = 255;
+		color_R.SetWindowTextA("255");
+	}
+	else colorR = buf;
+}
+
+void ball_2Dialog::OnEnChangeEdit22()
+{
+	int buf;
+	char* str = new char[5];
+	color_G.GetWindowTextA(str, 5);
+	buf = atoi(str);
+	if (buf < 0)
+	{
+		colorG = 0;
+		color_G.SetWindowTextA("0");
+	}
+	else if (buf > 255)
+	{
+		colorG = 255;
+		color_G.SetWindowTextA("255");
+	}
+	else colorG = buf;
+}
+
+void ball_2Dialog::OnEnChangeEdit23()
+{
+	int buf;
+	char* str = new char[5];
+	color_B.GetWindowTextA(str, 5);
+	buf = atoi(str);
+	if (buf < 0)
+	{
+		colorB = 0;
+		color_B.SetWindowTextA("0");
+	}
+	else if (buf > 255)
+	{
+		colorB = 255;
+		color_B.SetWindowTextA("255");
+	}
+	else colorB = buf;
 }
 
 

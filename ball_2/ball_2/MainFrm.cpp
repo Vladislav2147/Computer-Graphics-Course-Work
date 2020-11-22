@@ -40,7 +40,7 @@ CMainFrame::CMainFrame()
 	sp.PView.RedimMatrix(3);
 	sp.PView(0)=10;sp.PView(1)=30;sp.PView(2)=60;
 	sp.PLight.RedimMatrix(3);
-	sp.PLight(0)=0;sp.PLight(1)=30;sp.PLight(2)=60;
+	sp.PLight(0)=20;sp.PLight(1)=30;sp.PLight(2)=60;
 	sp.timer=true;
 	sp.timer_interval=100;
 	sp.ball_pos=0;

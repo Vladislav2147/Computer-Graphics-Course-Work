@@ -115,6 +115,7 @@ void CSphere::DrawD(CDC& dc,double Radius,CMatrix& PView,CMatrix& PLight,COLORRE
 	for(double fi=0;fi<=180.0;fi+=df){		//обход точек поверхности шара
 		for(double q=0;q<=180.0;q+=dq){
 			//обход левой половины
+
 			VSphere(1)=PView(1)+fi;
 			VSphere(2)=q;
 			VCart=SphereToCart(VSphere);	//переход от сферических к декартовым координатам точки на поверхности шара

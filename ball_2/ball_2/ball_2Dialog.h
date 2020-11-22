@@ -27,6 +27,9 @@ public:
 	afx_msg void OnBnClickedOk();
 	afx_msg void OnBnClickedRadio1();
 	afx_msg void OnBnClickedRadio2();
+	int colorR = 0;
+	int colorG = 0;
+	int colorB = 0;
 	CEdit con_A;
 	CEdit con_f;
 	CEdit con_F;
@@ -45,12 +48,18 @@ public:
 	CEdit mon_lig_R;
 	CEdit mon_lig_fi;
 	CEdit mon_lig_q;
+	CEdit color_R;
+	CEdit color_G;
+	CEdit color_B;
 	afx_msg void OnBnClickedButton1();
 	CButton btn_OK;
 	afx_msg void OnEnChangeEdit1();
 	afx_msg void OnEnChangeEdit2();
 	afx_msg void OnEnChangeEdit3();
 	afx_msg void OnEnChangeEdit4();
+	afx_msg void OnEnChangeEdit21();
+	afx_msg void OnEnChangeEdit22();
+	afx_msg void OnEnChangeEdit23();
 	afx_msg void OnNMCustomdrawSlider2(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMCustomdrawSlider3(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMCustomdrawSlider4(NMHDR *pNMHDR, LRESULT *pResult);
