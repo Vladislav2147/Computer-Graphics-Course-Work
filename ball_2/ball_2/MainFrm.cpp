@@ -26,6 +26,7 @@ CMainFrame::CMainFrame()
 	// TODO: добавьте код инициализации члена
 	//инициализация настроек
 	sp.ball_light=false;
+	sp.show_trajectory = true;
 	sp.color_b = RGB(255,0,0);
 	sp.color_s = RGB(100,60,60);
 	sp.color_n = RGB(200,0,0);

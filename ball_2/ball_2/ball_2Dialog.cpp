@@ -13,6 +13,7 @@ IMPLEMENT_DYNAMIC(ball_2Dialog, CDialogEx)
 
 ball_2Dialog::ball_2Dialog(CWnd* pParent /*=NULL*/)
 	: CDialogEx(ball_2Dialog::IDD, pParent)
+	, show_trajectory(FALSE)
 {
 
 	EnableAutomation();
@@ -64,11 +65,14 @@ void ball_2Dialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT22, color_G);
 	DDX_Control(pDX, IDC_EDIT23, color_B);
 	DDX_Control(pDX, IDOK, btn_OK);
+	DDX_Control(pDX, IDC_CHECK1, show_trajectory_checkbox);
+	DDX_Check(pDX, IDC_CHECK1, show_trajectory);
 }
 
 
 BEGIN_MESSAGE_MAP(ball_2Dialog, CDialogEx)
 	ON_BN_CLICKED(IDOK, &ball_2Dialog::OnBnClickedOk)
+	ON_BN_CLICKED(IDC_CHECK1, &ball_2Dialog::OnCheckChangedState)
 	ON_BN_CLICKED(IDC_RADIO1, &ball_2Dialog::OnBnClickedRadio1)
 	ON_BN_CLICKED(IDC_RADIO2, &ball_2Dialog::OnBnClickedRadio2)
 	ON_BN_CLICKED(IDC_BUTTON1, &ball_2Dialog::OnBnClickedButton1)
@@ -115,6 +119,13 @@ void ball_2Dialog::OnBnClickedOk()
 	CDialogEx::OnOK();
 }
 
+void ball_2Dialog::OnCheckChangedState()
+{
+
+	sp.show_trajectory = show_trajectory_checkbox.GetCheck() & BST_CHECKED;
+
+	// TODO: добавьте свой код обработчика уведомлений
+}
 
 void ball_2Dialog::OnBnClickedRadio1()
 {
@@ -153,7 +164,7 @@ void ball_2Dialog::OnBnClickedButton1()
 	con_F.SetWindowTextA(str);
 	itoa(main.main_R,str,10);
 	con_R.SetWindowTextA(str);
-
+	show_trajectory_checkbox.SetCheck((int)sp.show_trajectory);
 	//цвета
 	colorR = GetRValue(main.color_b);
 	colorG = GetGValue(main.color_b);

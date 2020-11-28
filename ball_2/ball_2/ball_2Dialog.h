@@ -25,6 +25,7 @@ protected:
 	DECLARE_INTERFACE_MAP()
 public:
 	afx_msg void OnBnClickedOk();
+	afx_msg void OnCheckChangedState();
 	afx_msg void OnBnClickedRadio1();
 	afx_msg void OnBnClickedRadio2();
 	int colorR = 0;
@@ -66,4 +67,6 @@ public:
 	afx_msg void OnNMCustomdrawSlider5(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMCustomdrawSlider6(NMHDR *pNMHDR, LRESULT *pResult);
 	afx_msg void OnNMCustomdrawSlider7(NMHDR *pNMHDR, LRESULT *pResult);
+	CButton show_trajectory_checkbox;
+	BOOL show_trajectory;
 };
