@@ -43,6 +43,7 @@ CMainFrame::CMainFrame()
 	sp.PLight.RedimMatrix(3);
 	sp.PLight(0)=20;sp.PLight(1)=30;sp.PLight(2)=60;
 	sp.timer=true;
+	sp.clock = true;
 	sp.timer_interval=100;
 	sp.ball_pos=0;
 }

@@ -67,12 +67,14 @@ void ball_2Dialog::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDOK, btn_OK);
 	DDX_Control(pDX, IDC_CHECK1, show_trajectory_checkbox);
 	DDX_Check(pDX, IDC_CHECK1, show_trajectory);
+	DDX_Control(pDX, IDC_CHECK2, is_clock_wise);
 }
 
 
 BEGIN_MESSAGE_MAP(ball_2Dialog, CDialogEx)
 	ON_BN_CLICKED(IDOK, &ball_2Dialog::OnBnClickedOk)
 	ON_BN_CLICKED(IDC_CHECK1, &ball_2Dialog::OnCheckChangedState)
+	ON_BN_CLICKED(IDC_CHECK2, &ball_2Dialog::OnClockDirChangedState)
 	ON_BN_CLICKED(IDC_RADIO1, &ball_2Dialog::OnBnClickedRadio1)
 	ON_BN_CLICKED(IDC_RADIO2, &ball_2Dialog::OnBnClickedRadio2)
 	ON_BN_CLICKED(IDC_BUTTON1, &ball_2Dialog::OnBnClickedButton1)
@@ -127,6 +129,14 @@ void ball_2Dialog::OnCheckChangedState()
 	// TODO: добавьте свой код обработчика уведомлений
 }
 
+void ball_2Dialog::OnClockDirChangedState()
+{
+
+	sp.clock = is_clock_wise.GetCheck() & BST_CHECKED;
+
+	// TODO: добавьте свой код обработчика уведомлений
+}
+
 void ball_2Dialog::OnBnClickedRadio1()
 {
 	con_light_diff.SetCheck(1);
@@ -165,6 +175,7 @@ void ball_2Dialog::OnBnClickedButton1()
 	itoa(main.main_R,str,10);
 	con_R.SetWindowTextA(str);
 	show_trajectory_checkbox.SetCheck((int)sp.show_trajectory);
+	is_clock_wise.SetCheck((int)sp.clock);
 	//цвета
 	colorR = GetRValue(main.color_b);
 	colorG = GetGValue(main.color_b);

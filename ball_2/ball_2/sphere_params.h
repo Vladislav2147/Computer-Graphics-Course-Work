@@ -8,6 +8,7 @@ struct sphere_params{
 	int ball_R;												//радиус шара
 	bool ball_light;										//модель освещения
 	bool show_trajectory;									//показывать траекторию
+	bool clock;												//направление вращения
 	CMatrix PView,PLight;									//положения источника освещения и наблюдателя
 	bool timer; int timer_interval;							//эмитация полета
 	int ball_pos;											//положение шара на траектории

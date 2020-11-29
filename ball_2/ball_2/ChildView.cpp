@@ -150,9 +150,19 @@ void CChildView::DialogMode(){
 }
 void CChildView::OnTimer(UINT_PTR id) 
 {
-	if(main.ball_pos < (int)2*pi/((pi/main.tr_density)*main.tr_F)-2)
-		((CMainFrame*)GetParentFrame())->sp.ball_pos+=2;			
-	else ((CMainFrame*)GetParentFrame())->sp.ball_pos = 1;
+	if (main.clock) 
+	{
+		if (main.ball_pos < (int)2 * pi / ((pi / main.tr_density) * main.tr_F) - 2)
+			((CMainFrame*)GetParentFrame())->sp.ball_pos += 2;
+		else ((CMainFrame*)GetParentFrame())->sp.ball_pos = 1;
+	}
+	else 
+	{
+		if (main.ball_pos > 0)
+			((CMainFrame*)GetParentFrame())->sp.ball_pos -= 2;
+		else ((CMainFrame*)GetParentFrame())->sp.ball_pos = (int)2 * pi / ((pi / main.tr_density) * main.tr_F) - 2;
+	}
+
 	Invalidate();
 }
 void CChildView::SaveImage()

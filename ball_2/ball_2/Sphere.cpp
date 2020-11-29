@@ -51,7 +51,7 @@ void CSphere::DrawTraector(CDC& dc,double Radius,double tr_A,double tr_F,double 
 	CPen* pen=new CPen(PS_SOLID,1,color);
 	CPen* old_pen = dc.SelectObject(pen);
 	double xystep = pi/density;
-	int zrange = 2*pi/(xystep*tr_F);//2*density;
+	int zrange = 2*pi/(xystep*abs(tr_F));//2*density;
 	
 	S.RedimMatrix(4,zrange);	//в мировой СК
 	CMatrix V(4,zrange);	//в видовой СК
