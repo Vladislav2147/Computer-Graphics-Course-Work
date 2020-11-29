@@ -1,7 +1,3 @@
-
-// MainFrm.cpp : реализаци€ класса CMainFrame
-//
-
 #include "stdafx.h"
 #include "ball_2.h"
 #include "MainFrm.h"
@@ -23,21 +19,20 @@ END_MESSAGE_MAP()
 
 CMainFrame::CMainFrame()
 {
-	// TODO: добавьте код инициализации члена
-	//инициализаци€ настроек
+	//инициализаци€ параметров шара по умолчанию
 	sp.ball_light=false;
 	sp.show_trajectory = true;
-	sp.color_b = RGB(255,0,0);
-	sp.color_s = RGB(100,60,60);
+	sp.color_b = RGB(255,255,0);
+	sp.color_s = RGB(0,200,0);
 	sp.color_n = RGB(200,0,0);
-	sp.color_p = RGB(0,200,0);
+	sp.color_p = RGB(0,0,200);
 	sp.OX = sp.OY = sp.OZ = 250;
 	sp.main_R = 100;
 	sp.tr_A = 30;
 	sp.tr_F = 3;
 	sp.tr_f = .5;
 	sp.tr_density = 360;
-	sp.ball_R = 7;
+	sp.ball_R = 5;
 	sp.PView.RedimMatrix(3);
 	sp.PView(0)=10;sp.PView(1)=30;sp.PView(2)=60;
 	sp.PLight.RedimMatrix(3);
@@ -69,10 +64,11 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 BOOL CMainFrame::PreCreateWindow(CREATESTRUCT& cs)
 {
+	//–азмеры окна
+	cs.cy = 480; 
+	cs.cx = 480; 
 	if( !CFrameWnd::PreCreateWindow(cs) )
 		return FALSE;
-	// TODO: изменить класс Window или стили посредством изменени€
-	//  CREATESTRUCT cs
 
 	cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 	cs.lpszClass = AfxRegisterWndClass(0);

@@ -1,7 +1,6 @@
 #ifndef LIBGRAPH
 #define LIBGRAPH 1
 const double pi=3.14159;
-//typedef double (*pfunc)(double);	// ”казатель на функцию
 
 struct CSizeD
 {

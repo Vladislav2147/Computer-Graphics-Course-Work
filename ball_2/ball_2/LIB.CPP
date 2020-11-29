@@ -1,3 +1,5 @@
+//Прямоугольник
+
 #include "stdafx.h"
 #include "LIB.H"
 #include "Math.h"

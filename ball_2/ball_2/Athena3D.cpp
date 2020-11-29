@@ -1,5 +1,7 @@
 #include "StdAfx.h"
-#include "Athena2D.h"
+#include "CMATRIX.H"
+#include "math.h"
+#include "lib.h"
 
 CMatrix Translate3D(double x,double y,double z){
 	CMatrix m(4,4);

@@ -11,8 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{16E6E443-470C-4A89-AB35-96277DD09474}</ProjectGuid>
-    <RootNamespace>ball_2</RootNamespace>
+    <ProjectGuid>{9E761A94-0040-43BA-BCF9-4679D5D95FBD}</ProjectGuid>
+    <RootNamespace>BALL_2</RootNamespace>
     <Keyword>MFCProj</Keyword>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
@@ -97,12 +97,10 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="ReadMe.txt" />
     <None Include="res\ball_2.ico" />
     <None Include="res\ball_2.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Athena2D.h" />
     <ClInclude Include="Athena3D.h" />
     <ClInclude Include="ball_2.h" />
     <ClInclude Include="ball_2Dialog.h" />
@@ -119,7 +117,6 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Athena2D.cpp" />
     <ClCompile Include="Athena3D.cpp" />
     <ClCompile Include="ball_2.cpp" />
     <ClCompile Include="ball_2Dialog.cpp" />

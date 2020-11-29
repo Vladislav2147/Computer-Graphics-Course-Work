@@ -1,7 +1,3 @@
-//смотрел
-// ChildView.cpp : реализация класса CChildView
-//
-
 #include "stdafx.h"
 #include "ball_2.h"
 #include "ChildView.h"
@@ -12,8 +8,6 @@
 #define new DEBUG_NEW
 #endif
 
-
-// CChildView
 sphere_params main;
 CChildView::CChildView()
 {
@@ -33,9 +27,6 @@ BEGIN_MESSAGE_MAP(CChildView, CWnd)
 	ON_COMMAND(ID_SAVE, SaveImage)
 END_MESSAGE_MAP()
 
-
-
-// обработчики сообщений CChildView
 
 BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs) 
 {
@@ -61,9 +52,8 @@ void CChildView::OnPaint()
 	CPaintDC dc(this); // контекст устройства для рисования
 	main.PLight.RedimMatrix(3);
 	main.PView.RedimMatrix(3);
-	//получение настроек
+	//получение параметров шара
 	main=((CMainFrame*)GetParentFrame())->sp;
-	//применение настроек
 	sphere.MV_and_MW(main.OX,main.OY,rw,main.PView);
 	sphere.DrawOXYZ(dc,main.OX,main.OY,main.OZ,main.PView,main.color_p,main.color_n);
 	if (main.show_trajectory) 
@@ -75,7 +65,6 @@ void CChildView::OnPaint()
 		sphere.DrawD(dc,main.ball_R,main.PView,main.PLight,main.color_b);
 	else if(main.ball_light==true)
 		sphere.DrawZ(dc,main.ball_R,main.PView,main.PLight,main.color_b);
-	// Не вызывайте CWnd::OnPaint() для сообщений рисования
 }
 void CChildView::OnKeyDown(UINT nChar,UINT nRepCount,UINT nFlags)
 {
@@ -150,13 +139,13 @@ void CChildView::DialogMode(){
 }
 void CChildView::OnTimer(UINT_PTR id) 
 {
-	if (main.clock) 
+	if (main.clock) //Движение по часовой стрелке 
 	{
 		if (main.ball_pos < (int)2 * pi / ((pi / main.tr_density) * main.tr_F) - 2)
 			((CMainFrame*)GetParentFrame())->sp.ball_pos += 2;
 		else ((CMainFrame*)GetParentFrame())->sp.ball_pos = 1;
 	}
-	else 
+	else //Движение против часовой стрелки 
 	{
 		if (main.ball_pos > 0)
 			((CMainFrame*)GetParentFrame())->sp.ball_pos -= 2;
@@ -165,8 +154,10 @@ void CChildView::OnTimer(UINT_PTR id)
 
 	Invalidate();
 }
+
+// функция для сохранения изображения рабочей области
 void CChildView::SaveImage()
-{ // функция для сохранения рабочей области
+{ 
 	CFileDialog fileDialog(FALSE,NULL,"ball_2.bmp");	
 	fileDialog.m_ofn.lpstrFilter = "bmp images\0*.bmp\0\0";
 	int result = fileDialog.DoModal();	

@@ -1,8 +1,3 @@
-//смотрел
-// ChildView.h : интерфейс класса CChildView
-//
-
-
 #pragma once
 #include "cmatrix.h"
 #include "lib.h"

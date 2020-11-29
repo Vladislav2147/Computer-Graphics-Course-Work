@@ -46,36 +46,36 @@ void CSphere::DrawOXYZ(CDC& dc,double OX,double OY,double OZ,CMatrix& PView,COLO
 	dc.MoveTo(p0);dc.LineTo(p0.x-(pZ.x-p0.x),p0.y-(pZ.y-p0.y));
 	dc.SelectObject(old_pen);
 }
-						//        радиус траектории  амплитуда  частота F  частота f    плотность
+
 void CSphere::DrawTraector(CDC& dc,double Radius,double tr_A,double tr_F,double tr_f,double density, CMatrix& PView,COLORREF color){
 	CPen* pen=new CPen(PS_SOLID,1,color);
 	CPen* old_pen = dc.SelectObject(pen);
-	double xystep = pi/density;
-	int zrange = 2*pi/(xystep*abs(tr_F));//2*density;
+	double step = pi/density;
+	int trajectory_point_amount = 2*pi/(step*abs(tr_F));
 	
-	S.RedimMatrix(4,zrange);	//в мировой СК
-	CMatrix V(4,zrange);	//в видовой СК
-	CMatrix W(3,zrange);	//в оконной СК
-	for(int i=0;i<zrange;i++) {
-		S(0,i)=(Radius+tr_A*sin((double)i*tr_f))*sin(i*xystep*tr_F);
-		S(1,i)=(Radius+tr_A*sin((double)i*tr_f))*cos(i*xystep*tr_F);
+	S.RedimMatrix(4,trajectory_point_amount);	//в мировой СК
+	CMatrix V(4,trajectory_point_amount);	//в видовой СК
+	CMatrix W(3,trajectory_point_amount);	//в оконной СК
+	for(int i=0;i<trajectory_point_amount;i++) {
+		S(0,i)=(Radius+tr_A*sin((double)i*tr_f))*sin(i*step*tr_F);
+		S(1,i)=(Radius+tr_A*sin((double)i*tr_f))*cos(i*step*tr_F);
 		S(2,i)=0;
 		S(3,i)=1;
 	}
-	for(int i=0;i<zrange;i++){
+	for(int i=0;i<trajectory_point_amount;i++){
 		CMatrix m=MV*S.GetCol(i);		//пересчет из мировой в видовую СК
 		for(int j=0;j<4;j++)
 			V(j,i)=m(j);
 		V(2,i)=1;
 	}
-	for(int i=0;i<zrange;i++){
+	for(int i=0;i<trajectory_point_amount;i++){
 		CMatrix m=MW*V.GetCol(i,0,2);	//пересчет из видовой в оконную СК
 		for(int j=0;j<3;j++)
 			W(j,i)=m(j);
 	}
 	CPoint p0(W(0,0),W(1,0));
 	dc.MoveTo(p0);
-	for(int i=1;i<zrange;i++){
+	for(int i=1;i<trajectory_point_amount;i++){
 		CPoint p(W(0,i),W(1,i));
 		dc.LineTo(p);					//прорисовка линиями от точки к точке
 	}
