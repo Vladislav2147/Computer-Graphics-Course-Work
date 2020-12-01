@@ -56,10 +56,8 @@ void CChildView::OnPaint()
 	main=((CMainFrame*)GetParentFrame())->sp;
 	sphere.MV_and_MW(main.OX,main.OY,rw,main.PView);
 	sphere.DrawOXYZ(dc,main.OX,main.OY,main.OZ,main.PView,main.color_p,main.color_n);
-	if (main.show_trajectory) 
-	{
-		sphere.DrawTraector(dc, main.main_R, main.tr_A, main.tr_F, main.tr_f, main.tr_density, main.PView, main.color_s);
-	}
+	sphere.DrawTraector(dc, main.main_R, main.tr_A, main.tr_F, main.tr_f, main.tr_density, main.PView, main.color_s, main.show_trajectory);
+
 	sphere.SetPos(main.ball_pos);
 	if(main.ball_light==false)
 		sphere.DrawD(dc,main.ball_R,main.PView,main.PLight,main.color_b);

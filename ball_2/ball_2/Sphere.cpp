@@ -47,7 +47,7 @@ void CSphere::DrawOXYZ(CDC& dc,double OX,double OY,double OZ,CMatrix& PView,COLO
 	dc.SelectObject(old_pen);
 }
 
-void CSphere::DrawTraector(CDC& dc,double Radius,double tr_A,double tr_F,double tr_f,double density, CMatrix& PView,COLORREF color){
+void CSphere::DrawTraector(CDC& dc,double Radius,double tr_A,double tr_F,double tr_f,double density, CMatrix& PView,COLORREF color, bool show_trajectory){
 	CPen* pen=new CPen(PS_SOLID,1,color);
 	CPen* old_pen = dc.SelectObject(pen);
 	double step = pi/density;
@@ -73,13 +73,15 @@ void CSphere::DrawTraector(CDC& dc,double Radius,double tr_A,double tr_F,double 
 		for(int j=0;j<3;j++)
 			W(j,i)=m(j);
 	}
-	CPoint p0(W(0,0),W(1,0));
-	dc.MoveTo(p0);
-	for(int i=1;i<trajectory_point_amount;i++){
-		CPoint p(W(0,i),W(1,i));
-		dc.LineTo(p);					//прорисовка линиями от точки к точке
+	if (show_trajectory) {
+		CPoint p0(W(0, 0), W(1, 0));
+		dc.MoveTo(p0);
+		for (int i = 1; i < trajectory_point_amount; i++) {
+			CPoint p(W(0, i), W(1, i));
+			dc.LineTo(p);					//прорисовка линиями от точки к точке
+		}
+		dc.SelectObject(old_pen);
 	}
-	dc.SelectObject(old_pen);
 }
 
 

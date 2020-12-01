@@ -15,7 +15,7 @@ public:
 	void DrawOXYZ(CDC& dc,double OX,double OY,double OZ,CMatrix& PView,COLORREF color1,COLORREF color2);
 
 	//прорисовка траектории
-	void DrawTraector(CDC& dc,double Radius,double tr_A,double tr_F,double tr_f,double density, CMatrix& PView,COLORREF color1);
+	void DrawTraector(CDC& dc, double Radius, double tr_A, double tr_F, double tr_f, double density, CMatrix& PView, COLORREF color, bool show_trajectory);
 
 	//прорисовка шара при диффузионной модели освещения
 	void DrawD(CDC& dc,double Radius,CMatrix& PView,CMatrix& PLight,COLORREF color);
