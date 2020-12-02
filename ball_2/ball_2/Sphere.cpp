@@ -133,10 +133,11 @@ void CSphere::DrawD(CDC& dc,double Radius,CMatrix& PView,CMatrix& PLight,COLORRE
 			VCart(2)=1;
 			VCart=MW*VCart;		//переход от видовой к оконной СК
 			cos_PN=cosViV2(VS,VSphereNorm);
+			cos_RN = cosViV2(VR, VSphereNorm);
 			if(cos_PN<=0){
 				//установка освещенности точки в зависимости от угла между 
 				//нормалью к поверхности сферы и вектором к источнику освещения
-				kLight=-cos_PN;	
+				kLight=-cos_PN* abs(cos_RN);	
 			}
 			else kLight=0;
 			col=RGB(R*kLight,G*kLight,B*kLight);
@@ -159,10 +160,11 @@ void CSphere::DrawD(CDC& dc,double Radius,CMatrix& PView,CMatrix& PLight,COLORRE
 			VCart(2)=1;
 			VCart=MW*VCart;		//переход от видовой к оконной СК
 			cos_PN=cosViV2(VS,VSphereNorm);
+			cos_RN = cosViV2(VR, VSphereNorm);
 			if(cos_PN<=0){
 				//установка освещенности точки в зависимости от угла между 
 				//нормалью к поверхности сферы и вектором к источнику освещения
-				kLight=-cos_PN;	
+				kLight = -cos_PN * abs(cos_RN);
 			}
 			else kLight=0;
 			col=RGB(R*kLight,G*kLight,B*kLight);

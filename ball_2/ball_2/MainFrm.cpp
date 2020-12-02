@@ -32,7 +32,7 @@ CMainFrame::CMainFrame()
 	sp.tr_F = 3;
 	sp.tr_f = .5;
 	sp.tr_density = 360;
-	sp.ball_R = 5;
+	sp.ball_R = 10;
 	sp.PView.RedimMatrix(3);
 	sp.PView(0)=10;sp.PView(1)=30;sp.PView(2)=60;
 	sp.PLight.RedimMatrix(3);

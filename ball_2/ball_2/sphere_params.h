@@ -13,3 +13,6 @@ struct sphere_params{
 	bool timer; int timer_interval;				//таймер
 	int ball_pos;								//положение шара на траектории
 };
+
+
+

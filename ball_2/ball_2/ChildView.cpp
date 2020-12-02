@@ -43,11 +43,10 @@ BOOL CChildView::PreCreateWindow(CREATESTRUCT& cs)
 
 void CChildView::OnPaint() 
 {
-
 	CRect Rect;
 	this->GetClientRect(Rect);
 	rw.SetRect(Rect.left, Rect.top, Rect.right, Rect.bottom);
-	step = 30;
+	step = 10;
 
 	CPaintDC dc(this); // контекст устройства для рисования
 	main.PLight.RedimMatrix(3);
@@ -56,14 +55,15 @@ void CChildView::OnPaint()
 	main=((CMainFrame*)GetParentFrame())->sp;
 	sphere.MV_and_MW(main.OX,main.OY,rw,main.PView);
 	sphere.DrawOXYZ(dc,main.OX,main.OY,main.OZ,main.PView,main.color_p,main.color_n);
-	sphere.DrawTraector(dc, main.main_R, main.tr_A, main.tr_F, main.tr_f, main.tr_density, main.PView, main.color_s, main.show_trajectory);
-
+	sphere.DrawTraector(dc, main.main_R, main.tr_A, main.tr_F, main.tr_f, 
+		main.tr_density, main.PView, main.color_s, main.show_trajectory);
 	sphere.SetPos(main.ball_pos);
 	if(main.ball_light==false)
 		sphere.DrawD(dc,main.ball_R,main.PView,main.PLight,main.color_b);
 	else if(main.ball_light==true)
 		sphere.DrawZ(dc,main.ball_R,main.PView,main.PLight,main.color_b);
 }
+
 void CChildView::OnKeyDown(UINT nChar,UINT nRepCount,UINT nFlags)
 {
 
